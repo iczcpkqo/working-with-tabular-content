@@ -1,0 +1,133 @@
+/*common control*/
+.button-1 {
+    background-color: #0066FF;
+    border: none;
+    border-radius: 4px;
+    color: #fff;
+    cursor: pointer;
+    font-size: 16px;
+    outline:0 none;
+    padding: 6px 12px;
+    transition: background-color 0.2s;
+}
+.button-1:hover {
+    background-color: #333399;
+}
+
+/*assignment*/
+.assignment-3 {
+    text-align: center;
+}
+
+.assignment-3 .container {
+    /*border: solid 1px #00f;*/
+    margin: 0 auto;
+    width: 80%;
+}
+
+.assignment-3 .container .tabular {
+}
+
+.tabular .left {
+    float: left;
+}
+
+.tabular .left .button-container {
+}
+
+.button-container .button-box {
+
+}
+
+.button-container .button-box input[type='button'] {
+
+}
+
+.table-container {
+
+}
+
+.table-container .table-box {
+}
+
+.table-container .table-box table {
+    float: left;
+    border: solid 1px #000;
+}
+
+table tr td,
+table tr th {
+    border: solid 1px #000;
+    padding: 6px 12px;
+}
+
+table tr th {
+    background-color: #A3A3A3;
+}
+
+table tbody tr:nth-child(odd) {
+    background-color: #ccc;
+}
+table tbody tr:nth-child(even) {
+    background-color: #eee;
+}
+
+
+table .avg,
+table .let,
+table .sca {
+    display: none;
+}
+
+table.avg tr .avg,
+table.let tr .let,
+table.sca tr .sca {
+    display: block;
+}
+
+.row {
+
+}
+
+.row.sel {
+    box-shadow: 0 0 5px 5px hsla(60,100%,70%, 1) inset;
+    background-color: #FFFFCC;
+}
+
+table tr {
+
+}
+
+.cell {
+
+}
+
+.cell.fail {
+
+}
+
+.cell a {
+
+}
+
+.cell input[type='text'] {
+    display: none;
+    width: 70px;
+}
+.cell.edit a {
+   display: none;
+}
+.cell.edit input[type='text'] {
+    display: block;
+}
+
+.cell.sel {
+
+}
+
+
+.tabular .right {
+    border: solid 1px #f00;
+    float: right;
+    width: 19%;
+}

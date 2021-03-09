@@ -1,0 +1,240 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet" href="working-with-tabular-content.css">
+</head>
+<body>
+    <div class="assignment-3">
+        <div class="container">
+            <div class="tabular">
+                <div class="left">
+                    <div class="button-container">
+                        <div class="button-box">
+                            <input class="button-1" type="button" value="button">
+                        </div>
+                    </div>
+                    <div class="table-container">
+                        <div class="table-box">
+                            <table id="table" class="avg" cellspacing="0">
+                                <thead id="table-thead">
+                                    <tr>
+                                        <th col-num="0">
+                                            <a>Student Name</a>
+                                        </th>
+                                        <th col-num="1">
+                                            <a>Student ID</a>
+                                        </th>
+                                        <th col-num="2">
+                                            <a>Assignment 1</a>
+                                        </th>
+                                        <th col-num="3">
+                                            <a>Assignment 2</a>
+                                        </th>
+                                        <th col-num="4">
+                                            <a>Assignment 3</a>
+                                        </th>
+                                        <th col-num="5">
+                                            <a>Assignment 4</a>
+                                        </th>
+                                        <th col-num="6">
+                                            <a>Assignment 5</a>
+                                        </th>
+                                        <th col-num="7">
+<!--                                            avg letter sca-->
+                                            <a class="avg">Average(%)</a>
+                                            <a class="let">Average(%)</a>
+                                            <a class="sca">Average(%)</a>
+                                        </th>
+                                    </tr>
+                                </thead>
+                                <tbody id="table-tbody">
+
+                                    <tr class="row">
+                                        <td class="cell">
+                                            <a value="Xiang Mao" row-num="0" col-num="0">Xiang Mao</a>
+                                            <input type="text" value="Xiang Mao">
+                                        </td>
+                                        <td class="cell">
+                                            <a value="20251952">20251952</a>
+                                            <input type="text" value="20251952">
+                                        </td>
+                                        <td class="cell sel">
+                                            <a value="85">85</a>
+                                            <input type="text" value="85">
+                                        </td>
+                                        <td class="cell edit">
+                                            <a value="86">86</a>
+                                            <input type="text" value="86">
+                                        </td>
+                                        <td class="cell">
+                                            <a value="-">-</a>
+                                            <input type="text" value="-">
+                                        </td>
+                                        <td class="cell">
+                                            <a value="88">88</a>
+                                            <input type="text" value="88">
+                                        </td>
+                                        <td class="cell">
+                                            <a value="89">89</a>
+                                            <input type="text" value="88">
+                                        </td>
+                                        <td class="cell avg">
+                                            <a value="86">86</a>
+                                            <input type="text" value="86">
+                                        </td>
+                                        <td class="cell let">
+                                            <a value="86">86</a>
+                                            <input type="text" value="86">
+                                        </td>
+                                        <td class="cell sca">
+                                            <a value="86">86</a>
+                                            <input type="text" value="86">
+                                        </td>
+                                    </tr>
+
+                                    <tr class="row">
+                                        <td class="cell sel">
+                                            <a value="Xiang Mao" row-num="0" col-num="0">Xiang Mao</a>
+                                            <input type="text" value="Xiang Mao">
+                                        </td>
+                                        <td class="cell edit">
+                                            <a value="20251952">20251952</a>
+                                            <input type="text" value="20251952">
+                                        </td>
+                                        <td class="cell sel edit">
+                                            <a value="85">85</a>
+                                            <input type="text" value="85">
+                                        </td>
+                                        <td class="cell">
+                                            <a value="86">86</a>
+                                            <input type="text" value="86">
+                                        </td>
+                                        <td class="cell">
+                                            <a value="-">-</a>
+                                            <input type="text" value="-">
+                                        </td>
+                                        <td class="cell">
+                                            <a value="88">88</a>
+                                            <input type="text" value="88">
+                                        </td>
+                                        <td class="cell">
+                                            <a value="89">89</a>
+                                            <input type="text" value="88">
+                                        </td>
+                                        <td class="cell avg">
+                                            <a value="77">77</a>
+                                            <input type="text" value="86">
+                                        </td>
+                                        <td class="cell let">
+                                            <a value="78">78</a>
+                                            <input type="text" value="86">
+                                        </td>
+                                        <td class="cell sca">
+                                            <a value="79">79</a>
+                                            <input type="text" value="86">
+                                        </td>
+                                    </tr>
+
+                                    <tr class="row sel">
+                                        <td class="cell sel">
+                                            <a value="Xiang Mao" row-num="0" col-num="0">Xiang Mao</a>
+                                            <input type="text" value="Xiang Mao">
+                                        </td>
+                                        <td class="cell edit">
+                                            <a value="20251952">20251952</a>
+                                            <input type="text" value="20251952">
+                                        </td>
+                                        <td class="cell sel edit">
+                                            <a value="85">85</a>
+                                            <input type="text" value="85">
+                                        </td>
+                                        <td class="cell">
+                                            <a value="86">86</a>
+                                            <input type="text" value="86">
+                                        </td>
+                                        <td class="cell">
+                                            <a value="-">-</a>
+                                            <input type="text" value="-">
+                                        </td>
+                                        <td class="cell">
+                                            <a value="88">88</a>
+                                            <input type="text" value="88">
+                                        </td>
+                                        <td class="cell">
+                                            <a value="89">89</a>
+                                            <input type="text" value="88">
+                                        </td>
+                                        <td class="cell avg">
+                                            <a value="77">77</a>
+                                            <input type="text" value="86">
+                                        </td>
+                                        <td class="cell let">
+                                            <a value="78">78</a>
+                                            <input type="text" value="86">
+                                        </td>
+                                        <td class="cell sca">
+                                            <a value="79">79</a>
+                                            <input type="text" value="86">
+                                        </td>
+                                    </tr>
+
+                                    <tr class="row">
+                                        <td class="cell sel">
+                                            <a value="Xiang Mao" row-num="0" col-num="0">Xiang Mao</a>
+                                            <input type="text" value="Xiang Mao">
+                                        </td>
+                                        <td class="cell edit">
+                                            <a value="20251952">20251952</a>
+                                            <input type="text" value="20251952">
+                                        </td>
+                                        <td class="cell sel edit">
+                                            <a value="85">85</a>
+                                            <input type="text" value="85">
+                                        </td>
+                                        <td class="cell">
+                                            <a value="86">86</a>
+                                            <input type="text" value="86">
+                                        </td>
+                                        <td class="cell">
+                                            <a value="-">-</ap>
+                                            <input type="text" value="-">
+                                        </td>
+                                        <td class="cell">
+                                            <a value="88">88</a>
+                                            <input type="text" value="88">
+                                        </td>
+                                        <td class="cell">
+                                            <a value="89">89</a>
+                                            <input type="text" value="88">
+                                        </td>
+                                        <td class="cell avg">
+                                            <a value="77">77</a>
+                                            <input type="text" value="86">
+                                        </td>
+                                        <td class="cell let">
+                                            <a value="78">78</a>
+                                            <input type="text" value="86">
+                                        </td>
+                                        <td class="cell sca">
+                                            <a value="79">79</a>
+                                            <input type="text" value="86">
+                                        </td>
+                                    </tr>
+
+
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+<!--                <div class="right">-->
+
+<!--                </div>-->
+            </div>
+        </div>
+    </div>
+</body>
+    <script src="working-with-tabular-content.js"></script>
+</html>
