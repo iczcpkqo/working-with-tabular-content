@@ -22,7 +22,8 @@
 .assignment-3 .container {
     /*border: solid 1px #00f;*/
     margin: 0 auto;
-    width: 80%;
+    padding-left: 40px;
+    width: 1250px;
 }
 
 .assignment-3 .container .tabular {
@@ -76,13 +77,13 @@ table tbody tr:nth-child(even) {
 }
 
 
-table .avg,
+table .per,
 table .let,
 table .sca {
     display: none;
 }
 
-table.avg tr .avg,
+table.per tr .per,
 table.let tr .let,
 table.sca tr .sca {
     display: block;
@@ -102,25 +103,58 @@ table tr {
 }
 
 .cell {
+    /*max-width: 170px;*/
+}
 
+td.cell.student {
+    text-align: left;
+}
+
+td.cell.fixed {
+
+}
+
+td.cell.editable {
+    text-align: right;
+}
+
+td.cell.score {
+    text-align: right;
+}
+
+td.cell.red {
+    background-color: #f00;
+    color: #fff;
 }
 
 .cell.fail {
-
+    background-color: #ff0;
 }
 
-.cell a {
-
+.cell.editable a {
+    /*border: solid 1px #f00;*/
+    float: left;
+    height: 30px;
+    line-height: 30px;
+    padding: 0 10%;
+    width: 80%;
+}
+.cell.editable.allow a {
+    /*display: none;*/
+    background-color: #fff;
+    border: solid 1px #0066FF;
+    border-radius: 4px;
+    box-shadow: 0 0 4px 0 #0cf;
+    height: 28px;
+    line-height: 28px;
+    overflow: auto;
 }
 
-.cell input[type='text'] {
+.cell.editable input[type='text'] {
     display: none;
     width: 70px;
 }
-.cell.edit a {
-   display: none;
-}
-.cell.edit input[type='text'] {
+.cell.editable.allow input[type='text'] {
     display: block;
 }
 

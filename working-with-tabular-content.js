@@ -1,6 +1,46 @@
 /**
  * common function
  */
+function getRandomName(firstNameBox, lastNameBox){
+    return firstNameBox[~~(Math.random()*100)] + ' ' + lastNameBox[~~(Math.random()*100)];
+}
+function getRandomScore(){
+    let r = ~~(Math.random()*150);
+    return r>100? 100 - ~~(Math.random()*10):r;
+}
+function getRandomId(){
+    return ~~(Math.random()*100000000);
+}
+function getRandomCookies(first, last, count){
+    let cookies = [];
+    for (let i=0; i<count; i++){
+        let jo = {
+            'name': getRandomName(first, last),
+            'id': getRandomId(),
+            'assignment 1': getRandomScore(),
+            'assignment 2': getRandomScore(),
+            'assignment 3': getRandomScore(),
+            'assignment 4': getRandomScore(),
+            'assignment 5': getRandomScore()
+    };
+        cookies.push(jo);
+    }
+    return cookies;
+}
+// [
+//     {'per':93-100, 'let':'A',  'sca':4.0},
+//     {'per':90-92,  'let':'A-', 'sca':3.7},
+//     {'per':87-89,  'let':'B+', 'sca':3.3},
+//     {'per':83-86,  'let':'B',  'sca':3.0},
+//     {'per':80-82,  'let':'B-', 'sca':2.7},
+//     {'per':77-79,  'let':'C+', 'sca':2.3},
+//     {'per':73-76,  'let':'C',  'sca':2.0},
+//     {'per':70-72,  'let':'C-', 'sca':1.7},
+//     {'per':67-69,  'let':'D+', 'sca':1.3},
+//     {'per':63-66,  'let':'D',  'sca':1.0},
+//     {'per':60-62,  'let':'D-', 'sca':0.7},
+//     {'per':`<60`,  'let':'F',  'sca':0.0}
+// ]
 
 /**
  * constant variable
@@ -11,7 +51,10 @@ const __STUDENT_ID__ = '20251952';
 /**
  * global variable
  */
+var g_data_conversion;
 var g_data_cookie;
+var g_firstname_box;
+var g_lastname_box;
 var g_table_thead;
 var g_table_tbody;
 var g_table_row;
@@ -24,128 +67,69 @@ var g_undo_col;
  */
 function pageLoad (){
     initGlobalVariable();
+    initTable();
 }
 
 function initGlobalVariable(){
-    g_data_cookie = [
-        {
-            'name': 'Xiang Mao',
-            'id': 20251952,
-            'score': {
-                'assignment 1': 88,
-                'assignment 2': 43,
-                'assignment 3': 99,
-                'assignment 4': 85,
-                'assignment 5': 73
-            }
-        }, {
-            'name': 'Xiang Mao',
-            'id': 20251952,
-            'score': {
-                'assignment 1': 88,
-                'assignment 2': 43,
-                'assignment 3': 99,
-                'assignment 4': 85,
-                'assignment 5': 73
-            }
-        }, {
-            'name': 'Xiang Mao',
-            'id': 20251952,
-            'score': {
-                'assignment 1': 88,
-                'assignment 2': 43,
-                'assignment 3': 99,
-                'assignment 4': 85,
-                'assignment 5': 73
-            }
-        }, {
-            'name': 'Xiang Mao',
-            'id': 20251952,
-            'score': {
-                'assignment 1': 88,
-                'assignment 2': 43,
-                'assignment 3': 99,
-                'assignment 4': 85,
-                'assignment 5': 73
-            }
-        }
+    g_data_conversion = [
+        {'per':93, 'let':'A',  'sca':'4.0'},
+        {'per':90,  'let':'A-', 'sca':'3.7'},
+        {'per':87,  'let':'B+', 'sca':'3.3'},
+        {'per':83,  'let':'B',  'sca':'3.0'},
+        {'per':80,  'let':'B-', 'sca':'2.7'},
+        {'per':77,  'let':'C+', 'sca':'2.3'},
+        {'per':73,  'let':'C',  'sca':'2.0'},
+        {'per':70,  'let':'C-', 'sca':'1.7'},
+        {'per':67,  'let':'D+', 'sca':'1.3'},
+        {'per':63,  'let':'D',  'sca':'1.0'},
+        {'per':60,  'let':'D-', 'sca':'0.7'},
+        {'per':0,  'let':'F',  'sca':'0.0'}
+        ]
+
+    g_firstname_box = [
+        'MARK', 'VINCENT', 'LYNCH', 'DAVID', 'RALPH', 'HETHERINGTON', 'SULTAN', 'NUMYALAI', 'RICHARD', 'OGBONNAYA',
+        'ANDREI', 'GHET', 'INGRID', 'PÉREZ', 'AGUILERA', 'TADHG', 'JAMES', 'WHITE', 'TAMARA', 'VERSHININA',
+        'JORDAN', 'AYOMILEKAN', 'SHODIPO', 'GANG', 'AN', 'JOSE', 'LORENZO', 'DIAGO', 'BOLUWATIFE', 'NICK',
+        'OGUNTUASE', 'JACK', 'DIGNAM', 'MARK', 'MC', 'GEE', 'SANDRA', 'ANGELIKA', 'PILSZAK', 'ASTLE',
+        'MALCOLM', 'CUTINHA', 'JAKE', 'SIEWER', 'LAURENTIU', 'IOSIF', 'MOLDOVAN', 'ENDA', 'MARK', 'HOSTY',
+        'LOLA', 'KATE', 'CROWLEY', 'JAMIE', 'DOWLING', 'JOSEPH', 'OLUMIDE', 'AKANDE', 'CIARAN', 'RAMSEY-MACLEOD',
+        'NINIKACHUKWU', 'UDOCHUKWU', 'JOHN', 'EMEZI', 'RIÁN', 'BERNARD', 'DALY', 'CLARKE', 'STEPHEN', 'JOSEPH',
+        'NOLAN', 'CLINTON', 'PAUL', 'JAMES', 'BATES', 'CONOR', 'GERARD', 'WALSH', 'CIARAN', 'MC',
+        'GINLEY', 'RAJENDR', 'SINGH', 'SCOTT', 'MATTHEW', 'LEIGH', 'SYED', 'MUHAMMAD', 'KHURSHID', 'ABBAS',
+        'JEMMA', 'MOLLOY', 'EMMANUEL', 'OLUWATOMISIN', 'AKINBOREWA', 'SEIK', 'YAN', 'CHOONG', 'ANNMARY', 'TREASA'
+    ];
+    g_lastname_box = [
+        'NICK', 'OGUNTUASE', 'JACK', 'DIGNAM', 'MARK', 'MC', 'GEE', 'SANDRA', 'ANGELIKA', 'PILSZAK',
+        'ASTLE', 'MALCOLM', 'CUTINHA', 'JAKE', 'SIEWER', 'LAURENTIU', 'IOSIF', 'MOLDOVAN', 'ENDA', 'MARK',
+        'HOSTY', 'LOLA', 'KATE', 'CROWLEY', 'JAMIE', 'DOWLING', 'JOSEPH', 'OLUMIDE', 'AKANDE', 'CIARAN',
+        'RAMSEY-MACLEOD', 'NINIKACHUKWU', 'UDOCHUKWU', 'JOHN', 'EMEZI', 'RIÁN', 'BERNARD', 'DALY', 'CLARKE', 'STEPHEN',
+        'JOSEPH', 'NOLAN', 'CLINTON', 'PAUL', 'JAMES', 'BATES', 'CONOR', 'GERARD', 'WALSH', 'CIARAN',
+        'MC', 'GINLEY', 'RAJENDR', 'SINGH', 'SCOTT', 'MATTHEW', 'LEIGH', 'SYED', 'MUHAMMAD', 'KHURSHID',
+        'ABBAS', 'JEMMA', 'MOLLOY', 'EMMANUEL', 'OLUWATOMISIN', 'AKINBOREWA', 'SEIK', 'YAN', 'CHOONG', 'ANNMARY',
+        'TREASA', 'JOSEPH', 'ROSS', 'WARD', 'HASSANATOU', 'DIALLO', 'KONRAD', 'SOKUN', 'EMMETT', 'PATRICK',
+        'MULROY', 'COLM', 'ALEXANDER', 'DONOHUE', 'ALEXANDRU', 'BOGDAN', 'DUMITRU', 'JONATHAN', 'STEPHEN', 'MC',
+        'NAMEE', 'JASON', 'DRAGOMIR', 'OISIN', 'THOMAS', 'HAMILL', 'CRISTINA', 'GONZALEZ', 'MARRERO', 'JOSIAH'
     ];
 
-    let box = document.getElementById('table-box');
-    let table = new Table();
-    let row = new RowLine();
-    let thd = new ThEdit();
-    let trd = new Cell('td');
-
-    box.appendChild(table.obj);
-    table.addTh(thd);
-    table.addRow(row);
-    row.addCell(trd);
-    thd.text = 'biao ti';
-    trd.text = 'ceshi';
-
-        // g_table_thead;
-        // g_table_tbody;
-        // g_table_row;
-        // g_table_col;
-        // g_undo_row;
-        // g_undo_col;
-
-    // test
-    // let bb = document.getElementById('tett');
-    //
-    // let tt = new ThEdit('th');
-    // let ta = new ThEdit('th');
-    // let cc = new Cell('td');
-    // let cca = new Cell('td');
-    // let ccb = new Cell('td');
-    //
-    // tt.text = 'ttttttt';
-    // ta.text = 'tatatat';
-    // cc.text = 'ccccc';
-    // cca.text  = 'cca'
-    // ccb.text  = 'ccb'
-    //
-    // bb.appendChild(tt.obj);
-    // bb.appendChild(ta.obj);
-    // bb.appendChild(cc.obj);
-    // bb.appendChild(cca.obj);
-    // bb.appendChild(ccb.obj);
-    // // bb.replaceChild(ccb.obj, bb.children[2]);
-    // // alert(bb.children[3].innerHTML);
-    // // bb.children[6] = ccb.obj;
-    // // bb.replaceChild(ccb.obj, bb.children[3]);
-    //
-    // setTimeout(function(bb, ccb){
-    //     bb.replaceChild(ccb.obj, bb.children[3]);
-    // }, 1000, bb, ccb);
-    //
-    // // tt.cellSelected();
-    // // tt.cellSelectedNot();
-    // // tt.cellSelectedToggle();
-    // // tt.cellEdited();
-    //
-    // // setTimeout(function(tt){
-    // //     let aa = document.getElementById('aaa');
-    // //     aa.appendChild(tt.obj);
-    // // }, 1000, tt);
-    // // tt.cellClick();
-    //
-    //
-    // // tt.cellRemoveClass('hahhA');
-    // // tt.col = 33
 }
 
 function initTable(){
+    let table = new Table();
+
+    table.showInId('table-box');
+    table.injectTheadFixed(['Student Name', 'Student ID', 'Assignment 1', 'Assignment 2', 'Assignment 3', 'Assignment 4', 'Assignment 5']);
+
+    table.injectMultiRows(getRandomCookies(g_firstname_box, g_lastname_box, 100));
 
 }
 
 /**
  * base object
  */
-class base{
+class Base{
     constructor(){
         this.obj = '';
+        this.nodeBook = [];
     }
     get class(){
         return this._class;
@@ -158,7 +142,7 @@ class base{
     /**
      * obj function
      */
-    AddClass(cls) {
+    addClass(cls) {
         this._class = this._class || '';
         if (this._class.indexOf(cls) !== -1)
             return false;
@@ -168,24 +152,44 @@ class base{
         this.obj.setAttribute('class', this._class);
     }
 
-    RemoveClass(cls) {
+    removeClass(cls) {
+        // console.log(cls + '||' + this._class);
+        // console.log(cls + '||' + this._class);
+
         this._class = this._class || '';
-        if (this._class.indexOf(cls) === -1)
+        if (this._class.indexOf(cls) === -1){
+            // alert(1);
+            // console.log('fffff');
             return false;
+        }
 
         this._class = this._class.replace(cls + ' ', '');
         this._class = this._class.replace(' ' + cls, '');
+        this._class = this._class.replace(cls, '');
         this.obj.setAttribute('class', this._class);
+    }
+
+    cellSelected(){
+        this.addClass('sel');
+    }
+    cellSelectedNot(){
+        this.removeClass('sel');
+    }
+    cellSelectedToggle(){
+        this._class = this._class || '';
+        if (this._class.indexOf('sel') === -1)
+            this.cellSelected();
+        else
+            this.cellSelectedNot();
     }
 }
 
 /**
  * table object
  */
-class Table extends base {
+class Table extends Base {
     constructor(){
         super();
-
         this.nodeBook = {
             'thead':[],
             'tbody':[]
@@ -196,39 +200,138 @@ class Table extends base {
         this.theadNodeRow = document.createElement('tr');
         this.tbodyNode = document.createElement('tbody');
 
+        let thScore = new ThScore();
+        thScore.parentNode = this;
+        this.nodeBook['thead'].push(thScore);
+        this.theadNodeRow.appendChild(thScore.obj);
+
         this.obj.appendChild(this.theadNode);
         this.obj.appendChild(this.tbodyNode);
         this.theadNode.appendChild(this.theadNodeRow);
 
-        // this.obj.className = 'avg';
+        // this.obj.className = 'per';
         this.obj.setAttribute('cellspacing', '0');
-        // cellspacing="0"
-
+        this.perScore();
     }
 
     /**
      * object function
      */
+    showInId(box){
+        document.getElementById(box).appendChild(this.obj);
+    }
+
+    /**
+     * Add Fixed titles of the column by strings
+     * @param ths, array = [col-name 1, col-name 2, ... , col-name n];
+     */
+    injectTheadFixed (ths){
+        for (let i in ths){
+            let node = new ThFixed();
+            // let node = document.createElement('th');
+            node.text = ths[i];
+            this.addTh(node);
+        }
+    }
+
+    /**
+     * Add Editable titles of the column by strings
+     * @param ths, array = [col-name 1, col-name 2, ... , col-name n];
+     */
+    injectTheadEditable (ths){
+        for (let i in ths){
+            let node = new ThEdit();
+            // let node = document.createElement('th');
+            node.text = ths[i];
+            this.addTh(node);
+        }
+    }
+
+    injectRow(data){
+        // let keys = Object.keys(this.nodeBook.thead);
+        // let tdBox = document.createElement('tr');
+        let row = new RowLine();
+        let node = '';
+        let score = {
+            sum: 0,
+            count: 0
+        }
+
+        for(let i in data){
+            if(i === 'name') {
+                node = new TdStudent();
+                node.addClass('student');
+            }
+            else if (i === 'id') {
+                node = new TdFixed();
+                node.addClass('student-id');
+            }
+            else {
+                node = new TdEdit();
+                score.sum+=data[i];
+                score.count++;
+            }
+            node.text = data[i];
+            row.addObjCell(node);
+        }
+
+        row.objScore.injectScore(score);
+        this.addRow(row);
+    }
+
+    injectMultiRows(data){
+        for (let i=0; i<data.length; i++)
+            this.injectRow(data[i]);
+    }
+
+    /**
+     * Add title of the column
+     * @param thNode, TH Cell Object
+     */
     addTh(thNode){
-        this.nodeBook['thead'].push(thNode);
-        this.theadNodeRow.appendChild(thNode.obj);
+        this.nodeBook.thead[this.nodeBook.thead.length] = this.nodeBook.thead.slice(-1);
+        this.nodeBook.thead[this.nodeBook.thead.length-2] = thNode;
+        this.theadNodeRow.insertBefore(thNode.obj, this.theadNodeRow.lastChild);
     }
 
     addRow(rowNode){
-        this.nodeBook['tbody'].push(rowNode);
+        rowNode.parentNode = this;
+        // console.log(rowNode.parentNode);
+        this.nodeBook.tbody[this.nodeBook.tbody.length] = this.nodeBook.tbody.slice(-1);
+        this.nodeBook.tbody[this.nodeBook.tbody.length-2] = rowNode;
         this.tbodyNode.appendChild(rowNode.obj);
     }
     addCol(){
     }
 
-    avgScore(){
+    scoreToggle(){
+        if(this.obj.classList.contains('per'))
+            this.letScore();
+        else if(this.obj.classList.contains('let'))
+            this.scaScore();
+        else
+            this.perScore();
+    }
+
+    perScore(){
+        this.removeClass('let');
+        this.removeClass('sca');
+
+        this.addClass('per');
     }
     letScore(){
+        this.removeClass('per');
+        this.removeClass('sca');
 
+        this.addClass('let');
     }
     scaScore(){
+        this.removeClass('let');
+        this.removeClass('per');
 
+        this.addClass('sca');
     }
+
 
 }
 
@@ -251,16 +354,49 @@ class Table extends base {
 /**
  * row & col Object
  */
-class RowLine{
+class RowLine extends Base{
     constructor() {
-        this.nodeBook = [];
+        super();
         this.obj = document.createElement('tr');
+        this.objScore = new TdScore();
+        this.objScore.parentNode = this;
+
+        this.addClass('row');
+
+        this.nodeBook[0] = this.objScore;
+        this.obj.appendChild(this.objScore.obj);
+
+        // console.log(this.nodeBook);
     }
 
-    addCell(cell){
+    addObjCell(cell){
         cell.parentNode = this;
-        this.nodeBook.push(cell);
-        this.obj.appendChild(cell.obj);
+        this.nodeBook[this.nodeBook.length] = this.nodeBook.slice(-1);
+        this.nodeBook[this.nodeBook.length-2] = cell
+        this.obj.insertBefore(cell.obj, this.obj.lastChild);
+    }
+
+    statScore(){
+        let score = {
+            'sum': 0,
+            'count': 0
+        };
+        for (let i=2; i<this.nodeBook.length-1; i++){
+            if(!isNaN(this.nodeBook[i].text))
+                score.sum += 1*this.nodeBook[i].text;
+            score.count++;
+        }
+
+        // let childrenBox = this.obj.children;
+        // for (let i=2; i<childrenBox.length-1; i++){
+        //     let a = childrenBox[i].getElementsByTagName('a')[0].innerHTML;
+        //     if (isNaN(a))
+            // if (!isNaN(childrenBox[0h]));
+                // score.sum += this.nodeBook[i].text;
+            // score.count++;
+        // }
+
+        this.objScore.injectScore(score);
     }
 }
 
@@ -271,7 +407,7 @@ class RowLine{
 /**
  * cell Object
  */
-class Cell extends base {
+class Cell extends Base {
     constructor(type) {
         super();
         /**
@@ -279,31 +415,31 @@ class Cell extends base {
          */
         this.obj = document.createElement(type);
         this.aNode = document.createElement('a');
-        this.inputNode = document.createElement('input');
+        // this.inputNode = document.createElement('input');
 
         /**
          *  deal data
          */
-        this.parentNode = '';
+        // this.parentNode = '';
 
         /**
          * init attribute
          */
-        this.AddClass('cell');
+        this.addClass('cell');
         this.obj.setAttribute('row-num', '-');
         this.obj.setAttribute('col-num', '-');
-        this.inputNode.setAttribute('type', 'text');
+        // this.inputNode.setAttribute('type', 'text');
 
         /**
          * build cell
          */
         this.obj.appendChild(this.aNode);
-        this.obj.appendChild(this.inputNode);
+        // this.obj.appendChild(this.inputNode);
 
         /**
          * bind addEventListener
          */
-        this.bindCellBlur();
+        // this.bindCellBlur();
     }
 
     get text(){
@@ -312,7 +448,7 @@ class Cell extends base {
     set text(text){
         this._text = text;
         this.aNode.innerHTML = this._text;
-        this.inputNode.setAttribute('value', this._text);
+        // this.inputNode.setAttribute('value', this._text);
     }
 
     // get class(){
@@ -339,13 +475,6 @@ class Cell extends base {
         this.obj.setAttribute('col-num', this._col);
     }
 
-    get parentNode(){
-        return this._parentNode;
-    }
-    set parentNode(par){
-        this._parentNode = par;
-    }
-
     /**
      * bind addEventListener for extends
      */
@@ -361,12 +490,22 @@ class Cell extends base {
 
     bindCellInput(){
         let cellObject = this;
-        this.inputNode.addEventListener('input', function(event){cellObject.cellInput(event, cellObject);});
+        this.aNode.addEventListener('input', function(event){cellObject.cellInput(event, cellObject);});
+    }
+    bindCellKeypress(){
+        let cellObject = this;
+        this.aNode.addEventListener('keypress', function(event){cellObject.cellKeypress(event, cellObject);});
+    }
+
+    bindCellFocus(){
+        let cellObject = this;
+        this.aNode.addEventListener('focus',function(event){cellObject.cellFocus(event, cellObject);});
     }
 
     bindCellBlur(){
         let cellObject = this;
-        this.inputNode.addEventListener('blur', function(event){cellObject.cellBlur(event, cellObject);});
+        // this.inputNode.addEventListener('blur', function(event){cellObject.cellBlur(event, cellObject);});
+        this.aNode.addEventListener('blur', function(event){cellObject.cellBlur(event, cellObject);});
     }
 
     /**
@@ -382,89 +521,238 @@ class Cell extends base {
     }
 
     cellInput(event, cellObject) {
+        // if(!event.data)
+        //     cellObject.cellBlur(event, cellObject);
+        // console.log(event.keyCode);
+        // alert(12);
+        // cellObject.aNode.setAttribute('txt', cellObject.aNode.innerHTML);
         // alert('input in');
         // console.log('cell input this' + this);
         // console.log(this);
     }
+    cellKeypress(event, cellObject) {
+        if(event.keyCode === 13)
+            cellObject.cellBlur(event, cellObject);
+    }
 
+    cellFocus(event, cellObject){
+        cellObject.cellEdited();
+    }
     cellBlur(event, cellObject){
+        cellObject.aNode.blur();
+        cellObject.text = cellObject.aNode.innerHTML;
         cellObject.cellEditedNot();
-        cellObject.aNode.innerHTML = cellObject.inputNode.value;
+        cellObject.cellCheckNumber();
+        cellObject.parentNode.statScore();
+        // alert(cellObject.text);
     }
 
     /**
      * obj function
      */
-    cellDataUpdate() {
-
+    cellCheckNumber() {
+        this.removeClass('fail');
+        if(isNaN(this.text) || this.text==='' || this.text>100 || this.text<0){
+            this.text = '-';
+            this.addClass('fail');
+        }
     }
 
-    // cellAddClass(cls) {
-    //     this._class = this._class || '';
-    //     if (this._class.indexOf(cls) !== -1)
-    //         return false;
-    //     this._class += ' ' + cls;
-    //     // this._class = this._class.replace(/(^\s*)|(\s*$)/g,'');
-    //     this._class = this._class.trim();
-    //     this.obj.setAttribute('class', this._class);
-    // }
-    //
-    // cellRemoveClass(cls) {
-    //     this._class = this._class || '';
-    //     if (this._class.indexOf(cls) === -1)
-    //         return false;
-    //
-    //     this._class = this._class.replace(cls + ' ', '');
-    //     this._class = this._class.replace(' ' + cls, '');
-    //     this.obj.setAttribute('class', this._class);
-    // }
-
     cellEdited() {
-        this.AddClass('edit');
-        this.inputNode.focus();
+        if (this.aNode.innerHTML === '-')
+            this.text = '';
+        this.addClass('allow');
+        this.aNode.setAttribute('contentEditable', 'true');
+        this.aNode.focus();
     }
 
     cellEditedNot() {
-        this.RemoveClass('edit');
+        this.removeClass('allow');
+        // alert(1);
     }
 
     cellEditToggle() {
         this._class = this._class || '';
-        if (this._class.indexOf('edit') === -1)
+        if (this._class.indexOf('allow') === -1)
             this.cellEdited();
         else
             this.cellEditedNot();
     }
+
+    // cellStanded(){
+    //     this.addClass('sta');
+    // }
+    // cellStandNot(){
+    //     this.removeClass('sta');
+    // }
+    // cellStandToggle(){
+    //     this._class = this._class || '';
+    //     if (this._class.indexOf('sta') === -1)
+    //         this.cellStanded();
+    //     else
+    //         this.cellStandNot();
+    // }
+
+
+
+
+}
+
+class ThFixed extends Cell {
+    constructor() {
+        super('th');
+        // this.inputNode.parentNode.removeChild(this.inputNode);
+
+        this.addClass('fixed');
+    }
+
 }
 
 class ThEdit extends Cell {
     constructor(){
         super('th');
 
+        this.addClass('editable');
+
         /**
          * bind addEventListener
          */
         this.bindCellClick();
+        // this.bindCellInput();
+        this.bindCellKeypress();
+        this.bindCellFocus();
+        this.bindCellBlur();
     }
 }
 
 class ThScore extends Cell {
     constructor(){
         super('th')
+        this.aNode.parentNode.removeChild(this.aNode);
+
+        let perNode = document.createElement('a')
+        let letNode = document.createElement('a')
+        let scaNode = document.createElement('a')
+
+        perNode.className = 'per'
+        letNode.className = 'let'
+        scaNode.className = 'sca'
+
+        perNode.innerHTML = 'Average(%)';
+        letNode.innerHTML = 'Average(Letter)';
+        scaNode.innerHTML = 'Average(4.0)';
+
+        this.obj.appendChild(perNode);
+        this.obj.appendChild(letNode);
+        this.obj.appendChild(scaNode);
+
+        this.addClass('score');
+
+        this.bindThScoreClick();
+    }
+
+    bindThScoreClick(){
+        let cellObject = this;
+        this.obj.addEventListener('click',function(event){cellObject.thScoreClick(event, cellObject);});
+    }
+
+    thScoreClick(event, thScore){
+        thScore.parentNode.scoreToggle();
     }
 }
 
-class TdEdit extends Cell {
+class TdFixed extends Cell {
+    constructor(){
+       super('td');
 
-}
-
-class TdScore extends Cell {
+       this.addClass('fixed');
+    }
 
 }
 
 class TdStudent extends Cell {
+    constructor(){
+        super('td');
+
+        this.addClass('student');
+
+        this.bindTdStudentClick();
+    }
+
+    bindTdStudentClick(){
+        let tdStudent = this;
+        this.obj.addEventListener('click', function(event){
+            tdStudent.tdStudentClick(event, tdStudent);
+        });
+    }
+
+    tdStudentClick(event, tdStudent){
+        alert('student clicked');
+    }
+}
+class TdEdit extends Cell {
+    constructor(){
+        super('td');
+
+        this.addClass('editable');
+
+        this.bindCellClick();
+        // this.bindCellInput();
+        this.bindCellKeypress();
+        this.bindCellFocus();
+        this.bindCellBlur();
+    }
+}
+
+class TdScore extends Cell {
+    constructor(){
+        super('td');
+
+        this.aNode.parentNode.removeChild(this.aNode);
+        // this.inputNode.parentNode.removeChild(this.inputNode);
+        this.perNode = document.createElement('a');
+        this.letNode = document.createElement('a');
+        this.scaNode = document.createElement('a');
+
+        this.perNode.className = 'per'
+        this.letNode.className = 'let'
+        this.scaNode.className = 'sca'
+
+        this.perNode.innerHTML = '-';
+        this.letNode.innerHTML = '-';
+        this.scaNode.innerHTML = '-';
+
+        this.obj.appendChild(this.perNode);
+        this.obj.appendChild(this.letNode);
+        this.obj.appendChild(this.scaNode);
+
+        this.addClass('score');
+    }
+
+    /**
+     * According the struct of data score to update score cell
+     * @param score, json, score = {sum: 0, count:0}
+     */
+    injectScore(score){
+        // console.log(score);
+        // console.log(score.sum/score.count);
+        // console.log((score.sum/score.count)>g_data_conversion[3].per);
+        for (let i=0; i<g_data_conversion.length; i++)
+            if((score.sum/score.count)>g_data_conversion[i].per){
+                this.perNode.innerHTML = Number(score.sum/score.count).toFixed(0) + '%';
+                this.letNode.innerHTML = g_data_conversion[i].let;
+                this.scaNode.innerHTML = g_data_conversion[i].sca;
+                break;
+            }
+
+        this.removeClass('red');
+        if ((score.sum / score.count) < 60)
+            this.addClass('red');
+
+    }
 
 }
+
 
 //page load
 pageLoad();
