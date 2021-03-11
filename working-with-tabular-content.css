@@ -23,7 +23,7 @@
     /*border: solid 1px #00f;*/
     margin: 0 auto;
     padding-left: 40px;
-    width: 1250px;
+    width: 1200px;
 }
 
 .assignment-3 .container .tabular {
@@ -49,6 +49,8 @@
 }
 
 .table-container .table-box {
+    overflow-x: scroll;
+    width: 1200px;
 }
 
 .table-container .table-box table {
@@ -68,12 +70,23 @@ table tr th {
 table tr th input{
    display: none
 }
+table tr th.cell.score {
+    cursor: pointer;
+}
 
-table tbody tr:nth-child(odd) {
+table tbody tr:nth-child(odd),
+table tbody tr:nth-child(odd) .cell.score {
     background-color: #ccc;
 }
-table tbody tr:nth-child(even) {
+table tbody tr:nth-child(even),
+table tbody tr:nth-child(even) .cell.score {
     background-color: #eee;
+}
+
+.cell.score {
+    box-shadow: -5px 10px 10px 1px #888;
+    position: sticky;
+    right: 0;
 }
 
 
@@ -123,8 +136,8 @@ td.cell.score {
 }
 
 td.cell.red {
-    background-color: #f00;
-    color: #fff;
+    background-color: #f00!important;
+    color: #fff!important;
 }
 
 .cell.fail {
@@ -162,6 +175,62 @@ td.cell.red {
 
 }
 
+/*.table-container .table-box .score-container {*/
+.table-container .score-container {
+    /*background-color: #fff;*/
+    bottom: 0;
+    float: left;
+    height: 70px;
+    margin-top: 20px;
+    position: sticky;
+    width: 1200px;
+}
+.score-container .panel,
+.score-container .board{
+    background-color: #eee;
+    float: right;
+    height: 70px;
+    /*padding-top: 5px;*/
+    width: 420px;
+}
+
+.score-container .panel{
+    border: solid 1px #09f;
+    box-shadow: 0 0 3px 2px #09f;
+    height: 50px;
+    float: left;
+    padding-top: 20px;
+}
+.score-container .panel input[type='button']{
+    float: left;
+    margin-left: 10px;
+}
+
+.score-container .board{
+    border: solid 1px #c30;
+    box-shadow: 0 0 3px 2px #c30;
+    float: right;
+}
+.score-container .board .stat-un-sub{
+
+}
+
+.score-container .board .stat-un-sub label{
+    color: #333399;
+    font-size: 22px;
+    font-weight: bolder;
+    line-height: 70px;
+}
+.score-container .board .stat-un-sub span{
+    background-color: #FFFFCC;
+    /*border: solid 1px #f00;*/
+    border-radius: 4px;
+    line-height: 70px;
+    font-size: 22px;
+    font-weight: bolder;
+    margin-left: 10px;
+    padding: 4px 12px;
+}
 
 .tabular .right {
     border: solid 1px #f00;

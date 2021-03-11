@@ -1,3 +1,4 @@
+//log, ready implement class tdEditString
 /**
  * common function
  */
@@ -21,6 +22,10 @@ function getRandomCookies(first, last, count){
             'assignment 2': getRandomScore(),
             'assignment 3': getRandomScore(),
             'assignment 4': getRandomScore(),
+            'assignment 6': getRandomScore(),
+            'assignment 7': getRandomScore(),
+            'assignment 8': getRandomScore(),
+            'assignment 9': getRandomScore(),
             'assignment 5': getRandomScore()
     };
         cookies.push(jo);
@@ -61,6 +66,7 @@ var g_table_row;
 var g_table_col;
 var g_undo_row;
 var g_undo_col;
+var g_table;
 
 /**
  * page load
@@ -68,6 +74,7 @@ var g_undo_col;
 function pageLoad (){
     initGlobalVariable();
     initTable();
+    initBind();
 }
 
 function initGlobalVariable(){
@@ -114,14 +121,23 @@ function initGlobalVariable(){
 }
 
 function initTable(){
-    let table = new Table();
+    g_table = new Table();
 
-    table.showInId('table-box');
-    table.injectTheadFixed(['Student Name', 'Student ID', 'Assignment 1', 'Assignment 2', 'Assignment 3', 'Assignment 4', 'Assignment 5']);
+    g_table.showInId('table-box');
+    g_table.injectTheadFixed(['Student Name', 'Student ID', 'Assignment 1', 'Assignment 2', 'Assignment 3', 'Assignment 4', 'Assignment 5', 'Assignment 2', 'Assignment 3', 'Assignment 4', 'Assignment 5']);
 
-    table.injectMultiRows(getRandomCookies(g_firstname_box, g_lastname_box, 100));
+    g_table.injectMultiRows(getRandomCookies(g_firstname_box, g_lastname_box, 10));
 
 }
+function initBind(){
+    let finalGrade = document.getElementById('final-grade');
+    let addRow = document.getElementById('add-row');
+    let addCol = document.getElementById('add-col');
+
+    finalGrade.addEventListener('click', addGradeClick);
+    addRow.addEventListener('click', addRowClick);
+}
+
 
 /**
  * base object
@@ -194,6 +210,7 @@ class Table extends Base {
             'thead':[],
             'tbody':[]
         }
+        this.unSub = 0;
 
         this.obj = document.createElement('table');
         this.theadNode = document.createElement('thead');
@@ -284,21 +301,43 @@ class Table extends Base {
             this.injectRow(data[i]);
     }
 
+    createNewRow() {
+        // let keys = Object.keys(this.nodeBook.thead);
+        // let tdBox = document.createElement('tr');
+        let row = new RowLine();
+        let node = '';
+        let count = g_table.nodeBook.thead.length;
+
+        for (let i=0; i<count; i++){
+            if(i<2)
+                node = new TdEditString();
+            else
+                node = new TdEdit();
+            node.text = '-';
+            row.addObjCell(node);
+        }
+        this.addRow(row);
+    }
+
     /**
      * Add title of the column
      * @param thNode, TH Cell Object
      */
     addTh(thNode){
-        this.nodeBook.thead[this.nodeBook.thead.length] = this.nodeBook.thead.slice(-1);
+        // this.nodeBook.thead[this.nodeBook.thead.length] = this.nodeBook.thead.slice(-1);
+        // this.nodeBook.thead[this.nodeBook.thead.length-2] = thNode;
+        // this.theadNodeRow.insertBefore(thNode.obj, this.theadNodeRow.lastChild);
+
+        this.nodeBook.thead[this.nodeBook.thead.length] = this.nodeBook.thead[this.nodeBook.thead.length-1];
         this.nodeBook.thead[this.nodeBook.thead.length-2] = thNode;
         this.theadNodeRow.insertBefore(thNode.obj, this.theadNodeRow.lastChild);
     }
 
     addRow(rowNode){
         rowNode.parentNode = this;
-        // console.log(rowNode.parentNode);
-        this.nodeBook.tbody[this.nodeBook.tbody.length] = this.nodeBook.tbody.slice(-1);
-        this.nodeBook.tbody[this.nodeBook.tbody.length-2] = rowNode;
+        // this.nodeBook.tbody[this.nodeBook.tbody.length] = {};
+        // this.nodeBook.tbody[this.nodeBook.tbody.length-1] = rowNode;
+        this.nodeBook.tbody.push(rowNode);
         this.tbodyNode.appendChild(rowNode.obj);
     }
     addCol(){
@@ -332,6 +371,18 @@ class Table extends Base {
         this.addClass('sca');
     }
 
+
+    getTotalUnSub(){
+        this.unSub = 0;
+        for(let i in this.nodeBook.tbody){
+            let row = this.nodeBook.tbody[i].nodeBook;
+            for (let j=2; j<(row.length-1 || 0); j++)
+                if(row[j].text === '-')
+                    this.unSub +=1;
+        }
+
+        return this.unSub;
+    }
 
 }
 
@@ -426,8 +477,10 @@ class Cell extends Base {
          * init attribute
          */
         this.addClass('cell');
-        this.obj.setAttribute('row-num', '-');
-        this.obj.setAttribute('col-num', '-');
+        // this.obj.setAttribute('row-num', '-');
+        // this.obj.setAttribute('col-num', '-');
+        this.obj.setAttribute('noWrap','noWrap');
+        // word-wrap:break-word!important;
         // this.inputNode.setAttribute('type', 'text');
 
         /**
@@ -652,11 +705,13 @@ class ThScore extends Cell {
     }
 
     bindThScoreClick(){
+        // alert(2);
         let cellObject = this;
         this.obj.addEventListener('click',function(event){cellObject.thScoreClick(event, cellObject);});
     }
 
     thScoreClick(event, thScore){
+        // alert(1);
         thScore.parentNode.scoreToggle();
     }
 }
@@ -701,6 +756,35 @@ class TdEdit extends Cell {
         this.bindCellKeypress();
         this.bindCellFocus();
         this.bindCellBlur();
+        this.bindTdEditBlur();
+    }
+    bindTdEditBlur(){
+        let node = this;
+        this.aNode.addEventListener('blur', function(event){node.tdEditBlur(event, node);});
+    }
+    tdEditBlur(event, node){
+        document.getElementById('un-sub-number').innerHTML = node.parentNode.parentNode.getTotalUnSub();
+    }
+}
+class TdEditString extends Cell{
+    constructor(){
+        super('td');
+
+        this.addClass('editable');
+
+        this.bindCellClick();
+        this.bindCellInput();
+        // this.bindCellKeypress();
+        // this.bindCellFocus();
+        this.bindCellBlur();
+        // this.bindTdEditBlur();
+    }
+    bindTdEditBlur(){
+        let node = this;
+        this.aNode.addEventListener('blur', function(event){node.tdEditBlur(event, node);});
+    }
+    tdEditBlur(event, node){
+        document.getElementById('un-sub-number').innerHTML = node.parentNode.parentNode.getTotalUnSub();
     }
 }
 
@@ -753,6 +837,18 @@ class TdScore extends Cell {
 
 }
 
+/**
+ * button function
+ */
+function addRowClick(){
+    g_table.createNewRow();
 
+}
+function addColClick(){
+
+}
+function addGradeClick(){
+    g_table.nodeBook.thead[g_table.nodeBook.thead.length-1].obj.click();
+}
 //page load
 pageLoad();
