@@ -271,6 +271,7 @@ td.cell.fail {
 /*NOTE BOX*/
 .re-box {
     width: 1200px;
+    overflow: hidden;
 }
 .re-box.fold {
     float: left;
