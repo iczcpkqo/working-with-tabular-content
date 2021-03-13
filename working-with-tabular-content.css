@@ -72,6 +72,7 @@ table tr th input{
 }
 table tr th.cell.score {
     cursor: pointer;
+    user-select: none;
 }
 
 table tbody tr:nth-child(odd),
@@ -89,6 +90,9 @@ table tbody tr:nth-child(even) .cell.score {
     right: 0;
 }
 
+.cell.score a {
+    width: 127px;
+}
 
 table .per,
 table .let,
@@ -106,25 +110,48 @@ table.sca tr .sca {
 
 }
 
-.row.sel {
-    box-shadow: 0 0 5px 5px hsla(60,100%,70%, 1) inset;
-    background-color: #FFFFCC;
+/*table .sel,*/
+table th.sel {
+    /*box-shadow: 0 0 5px 5px #888 inset;*/
+    background-color: #888;
 }
+
+table .sel .row,
+table .sel td,
+table td.sel{
+    /*box-shadow: 0 0 5px 5px hsla(60,100%,70%, 1) inset;*/
+    /*background-color: #FFFFCC;*/
+    background-color: #FFc;
+}
+
+table .row.sel .sel {
+    background-color: #ff9;
+}
+
 
 table tr {
 
 }
 
 .cell {
-    /*max-width: 170px;*/
+    /*max-widt3: 170px;*/
+}
+
+.cell a{
+    /*min-width: 20px;*/
+    overflow: hidden;
 }
 
 td.cell.student {
-    text-align: left;
+    text-align: left!important;
+}
+td.cell.student a,
+td.cell.fixed a {
+    padding: 0;
 }
 
 td.cell.fixed {
-
+    text-align: left!important;
 }
 
 td.cell.editable {
@@ -140,8 +167,9 @@ td.cell.red {
     color: #fff!important;
 }
 
-.cell.fail {
-    background-color: #ff0;
+.cell.fail,
+td.cell.fail {
+    background-color: #ff3!important;
 }
 
 .cell.editable a {
@@ -160,7 +188,7 @@ td.cell.red {
     box-shadow: 0 0 4px 0 #0cf;
     height: 28px;
     line-height: 28px;
-    overflow: auto;
+    /*overflow: auto;*/
 }
 
 .cell.editable input[type='text'] {
@@ -169,10 +197,6 @@ td.cell.red {
 }
 .cell.editable.allow input[type='text'] {
     display: block;
-}
-
-.cell.sel {
-
 }
 
 /*.table-container .table-box .score-container {*/
@@ -191,7 +215,6 @@ td.cell.red {
     float: right;
     height: 70px;
     /*padding-top: 5px;*/
-    width: 420px;
 }
 
 .score-container .panel{
@@ -200,6 +223,7 @@ td.cell.red {
     height: 50px;
     float: left;
     padding-top: 20px;
+    width: 613px;
 }
 .score-container .panel input[type='button']{
     float: left;
@@ -210,6 +234,7 @@ td.cell.red {
     border: solid 1px #c30;
     box-shadow: 0 0 3px 2px #c30;
     float: right;
+    width: 420px;
 }
 .score-container .board .stat-un-sub{
 
@@ -237,3 +262,122 @@ td.cell.red {
     float: right;
     width: 19%;
 }
+
+
+/*NOTE BOX*/
+.re-box {
+    width: 1200px;
+}
+.re-box.fold {
+    float: left;
+    border: #f00;
+    height: 40px;
+}
+.re-box.fold {
+}
+
+.re-box .button-expand {
+    display: none;
+}
+
+.re-box.fold .button-expand {
+    display: block;
+}
+.re-box.fold .button-fold {
+    display: none;
+}
+
+.re-box .button-fold,
+.re-box .button-expand {
+    background-color: #cc9;
+    cursor: pointer;
+    float: left;
+    padding: 4px 14px;
+    margin-left: 10px;
+}
+.re-box .tit {
+    color: #c30;
+    font-size: 18px;
+    font-weight: bolder;
+}
+.re-box ul li{
+    list-style: none;
+    padding-top: 8px;
+    text-align: left;
+}
+.re-box ul li span {
+    font-size: 14px;
+    padding-left: 8px;
+}
+.re-box ul li:before{
+    background-color: #0cf;
+    background-image: linear-gradient(165deg, #0cf, #0f3);
+    border: solid 1px #06c;
+    border-radius: 4px;
+    box-shadow: 0 0 5px 1px #0f6;
+    content: 'DONE';
+    font-size: 9px;
+    margin: 2px;
+    line-height: 30px;
+    padding: 2px 4px;
+}
+
+.re-box .re-right .txt ul li:nth-child(n+2) span:after{
+    color: #c03;
+    font-weight: bolder;
+    padding-left: 8px ;
+}
+
+.re-box .re-right .txt ul li:nth-child(2) span:after,
+.re-box .re-right .txt ul li:nth-child(3) span:after {
+    content: '(1%)';
+}
+.re-box .re-right .txt ul li:nth-child(4) span:after{
+    content: '(2%)';
+}
+
+.re-box .re-left .txt ul li:nth-child(1),
+.re-box .re-left .txt ul li:nth-child(7),
+.re-box .re-left .txt ul li:nth-child(8),
+.re-box .re-right .txt ul li:nth-child(1)
+{
+    font-weight: bold;
+    padding-left: 10px;
+}
+.re-box .re-left .txt ul li:nth-child(2),
+.re-box .re-left .txt ul li:nth-child(5),
+.re-box .re-left .txt ul li:nth-child(6),
+.re-box .re-left .txt ul li:nth-child(9),
+.re-box .re-left .txt ul li:nth-child(10),
+.re-box .re-right .txt ul li:nth-child(n+2) {
+    padding-left: 45px;
+}
+.re-box .re-left .txt ul li:nth-child(3),
+.re-box .re-left .txt ul li:nth-child(4)
+{
+    padding-left: 80px;
+}
+
+.re-box .re-left {
+    float: left;
+}
+.re-left .tit{
+
+}
+.re-left .txt ul{
+}
+
+
+.re-box .re-right {
+    float: left;
+    margin-left: 100px;
+}
+.re-right .tit{
+
+}
+.re-right .txt ul{
+
+}
+.re-right .txt ul li{
+}
+

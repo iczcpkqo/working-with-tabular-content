@@ -14,6 +14,44 @@
                         <div class="button-box">
                         </div>
                     </div>
+                    <div class="re-box">
+                        <div class="re-left">
+                            <div class="tit">
+                                Interactive Requirements
+                            </div>
+                            <div class="txt">
+                                <ul>
+                                    <li><span>1. Dynamic functionality.</span></li>
+                                        <li><span>(i) Automatically recalculate a:</span></li>
+                                            <li><span>(a) The value should be rounded;</span></li>
+                                            <li><span>(b) Red background.</span></li>
+                                        <li><span>(ii) Total number;</span></li>
+                                        <li><span>(iii) Automativally validate cell data;</span></li>
+                                    <li><span>2. "Final Grade" Toggles;</span></li>
+                                    <li><span>3. Additional Buttons:</span></li>
+                                        <li><span>(i) Inserts a new Row;</span></li>
+                                        <li><span>(ii) Inserts a new Column;</span></li>
+                                </ul>
+                            </div>
+                        </div>
+                        <div class="re-right">
+                            <div class="tit">
+                                Extra Credit Functionality
+                            </div>
+                            <div class="txt">
+                                <ul>
+                                    <li><span>4. Extra Credit Functionality:</span></li>
+                                        <li><span>(i) To highlight a Row;</span></li>
+                                        <li><span>(ii) To highlight a Column;</span></li>
+                                        <li><span>(iii) To Delete Rows, And Columns;</span></li>
+                                </ul>
+                            </div>
+                        </div>
+                        <div class="button-fold" onclick="document.getElementsByClassName('re-box')[0].classList.toggle('fold')">Fold</div>
+                        <div class="button-expand" onclick="document.getElementsByClassName('re-box')[0].classList.toggle('fold')">Expand</div>
+                    </div>
+
+
                     <div class="table-container">
                         <div id="table-box" class="table-box">
 <!--                            <table id="table" class="per" cellspacing="0">-->
@@ -254,6 +292,7 @@
                                 <input id="add-row" class="button-1" type="button" value="Add New Row">
                                 <input id="add-col" class="button-1" type="button" value="Add New Column">
                                 <input id="final-grade" class="button-1" type="button" value="Final Grade">
+                                <input id="delete-sel" class="button-1" type="button" value="Delete Selected Items">
                             </div>
                             <div class="board">
                                 <div class="stat-un-sub">
@@ -269,8 +308,8 @@
 
                     </div>
                 </div>
-                <!--                <div class="right">-->
-
+<!--                                <div class="right">-->
+<!--asdf-->
 <!--                </div>-->
             </div>
         </div>
