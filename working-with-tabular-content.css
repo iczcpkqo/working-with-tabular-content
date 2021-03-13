@@ -1,6 +1,11 @@
+/**
+ * Operating System: Windows 10
+ * Browser version: Chrome 87.0.4280.88
 
-/*      Student Name: Xiang Mao      */
-/*      Strudent ID: 20251952      */
+ * Student Name: Xiang Mao
+ * Student ID: 20251952
+ */
+
 
 /*common control*/
 .button-1 {
@@ -386,3 +391,12 @@ td.cell.fail {
 .re-right .txt ul li{
 }
 
+.re-box .env {
+    background-color: #eee;
+    float: right;
+    padding-right: 50px;
+    padding-bottom: 20px;
+}
+.re-box .env ul li:before {
+    display: none;
+}

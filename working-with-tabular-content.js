@@ -1,8 +1,9 @@
 /*
+ * Operating System: Windows 10
+ * Browser version: Chrome 87.0.4280.88
 
-    Student Name: Xiang Mao
-    Strudent ID: 20251952
-
+ * Student Name: Xiang Mao
+ * Student ID: 20251952
  */
 
 /**
