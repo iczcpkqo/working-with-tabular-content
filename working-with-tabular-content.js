@@ -1,4 +1,10 @@
-//log, ready implement class tdEditString
+/*
+
+    Student Name: Xiang Mao
+    Strudent ID: 20251952
+
+ */
+
 /**
  * common function
  */
@@ -53,25 +59,6 @@ function getRandomCookies(first, last, count){
     }
     return cookies;
 }
-
-// function scrollSlowTo(xPos,yPos){
-//
-// }
-// [
-//     {'per':93-100, 'let':'A',  'sca':4.0},
-//     {'per':90-92,  'let':'A-', 'sca':3.7},
-//     {'per':87-89,  'let':'B+', 'sca':3.3},
-//     {'per':83-86,  'let':'B',  'sca':3.0},
-//     {'per':80-82,  'let':'B-', 'sca':2.7},
-//     {'per':77-79,  'let':'C+', 'sca':2.3},
-//     {'per':73-76,  'let':'C',  'sca':2.0},
-//     {'per':70-72,  'let':'C-', 'sca':1.7},
-//     {'per':67-69,  'let':'D+', 'sca':1.3},
-//     {'per':63-66,  'let':'D',  'sca':1.0},
-//     {'per':60-62,  'let':'D-', 'sca':0.7},
-//     {'per':`<60`,  'let':'F',  'sca':0.0}
-// ]
-
 
 /**
  * constant variable
@@ -397,8 +384,6 @@ class Table extends Base {
      * Create a new empty row
      */
     createNewRow() {
-        // let keys = Object.keys(this.nodeBook.thead);
-        // let tdBox = document.createElement('tr');
         let row = new RowLine();
         let node = '';
         let count = this.nodeBook.thead.length;
@@ -421,8 +406,6 @@ class Table extends Base {
      * Create a new empty column
      */
     createNewCol(){
-        // let keys = Object.keys(this.nodeBook.thead);
-        // let tdBox = document.createElement('tr');
         for (let i=0; i<this.nodeBook.tbody.length+1; i++){
             if (!i) {
                 let newTh = new ThEdit('Assignment ' + (this.nodeBook.thead.length-2).toString() + '&nbsp;&nbsp;&nbsp;&nbsp;');
@@ -445,9 +428,6 @@ class Table extends Base {
      */
     addTh(thNode){
         thNode.parentNode = this;
-        // this.nodeBook.thead[this.nodeBook.thead.length] = this.nodeBook.thead.slice(-1);
-        // this.nodeBook.thead[this.nodeBook.thead.length-2] = thNode;
-        // this.theadNodeRow.insertBefore(thNode.obj, this.theadNodeRow.lastChild);
 
         this.nodeBook.thead[this.nodeBook.thead.length] = this.nodeBook.thead[this.nodeBook.thead.length-1];
         this.nodeBook.thead[this.nodeBook.thead.length-2] = thNode;
@@ -460,8 +440,6 @@ class Table extends Base {
      */
     addRow(rowNode){
         rowNode.parentNode = this;
-        // this.nodeBook.tbody[this.nodeBook.tbody.length] = {};
-        // this.nodeBook.tbody[this.nodeBook.tbody.length-1] = rowNode;
         this.nodeBook.tbody.push(rowNode);
         this.tbodyNode.appendChild(rowNode.obj);
     }
@@ -531,13 +509,9 @@ class Table extends Base {
      * @param {RowLine} row, Row Object
      */
     deleteRow(row){
-        // for(let i in this.nodeBook.tbody)
-        //     if()
         let tb = this.nodeBook;
-        // alert(tb.tbody.length);
         for(let i in tb.tbody)
             if(Object.is(tb.tbody[i], row)){
-                // alert(i);
                 tb.deleteRow.push(row);
                 tb.tbody.splice(i,1);
                 this.tbodyNode.removeChild(row.obj);
@@ -583,22 +557,6 @@ class Table extends Base {
 }
 
 /**
- * thead Object
- */
-// class thead {
-//     constructor() {
-//         this.nodeBook = []
-//     }
-// }
-//
-// /**
-//  * tbody Object
-//  */
-// class tbody{
-//
-// }
-
-/**
  * row & col Object
  */
 
@@ -617,7 +575,6 @@ class RowLine extends Base{
         this.nodeBook[0] = this.objScore;
         this.obj.appendChild(this.objScore.obj);
 
-        // console.log(this.nodeBook);
     }
 
     /**
@@ -644,16 +601,6 @@ class RowLine extends Base{
                 score.sum += 1*this.nodeBook[i].text;
             score.count++;
         }
-
-        // let childrenBox = this.obj.children;
-        // for (let i=2; i<childrenBox.length-1; i++){
-        //     let a = childrenBox[i].getElementsByTagName('a')[0].innerHTML;
-        //     if (isNaN(a))
-            // if (!isNaN(childrenBox[0h]));
-                // score.sum += this.nodeBook[i].text;
-            // score.count++;
-        // }
-
         this.objScore.injectScore(score);
     }
 }
@@ -673,33 +620,22 @@ class Cell extends Base {
          */
         this.obj = document.createElement(type);
         this.aNode = document.createElement('a');
-        // this.inputNode = document.createElement('input');
 
         /**
          *  deal data
          */
-        // this.parentNode = '';
 
         /**
          * init attribute
          */
         this.addClass('cell');
-        // this.obj.setAttribute('row-num', '-');
-        // this.obj.setAttribute('col-num', '-');
         this.obj.setAttribute('noWrap','noWrap');
-        // word-wrap:break-word!important;
-        // this.inputNode.setAttribute('type', 'text');
 
         /**
          * build cell
          */
         this.obj.appendChild(this.aNode);
-        // this.obj.appendChild(this.inputNode);
 
-        /**
-         * bind addEventListener
-         */
-        // this.bindCellBlur();
     }
 
     get text(){
@@ -708,16 +644,7 @@ class Cell extends Base {
     set text(text){
         this._text = text;
         this.aNode.innerHTML = this._text;
-        // this.inputNode.setAttribute('value', this._text);
     }
-
-    // get class(){
-    //     return this._class;
-    // }
-    // set class(cls){
-    //     this._class = cls;
-    //     this.obj.setAttribute('class', this._class);
-    // }
 
     get row(){
         return this._row;
@@ -816,14 +743,7 @@ class Cell extends Base {
      * @param {Cell} cellObject
      */
     cellInput(event, cellObject) {
-        // if(!event.data)
-        //     cellObject.cellBlur(event, cellObject);
-        // console.log(event.keyCode);
-        // alert(12);
-        // cellObject.aNode.setAttribute('txt', cellObject.aNode.innerHTML);
-        // alert('input in');
-        // console.log('cell input this' + this);
-        // console.log(this);
+
     }
 
     /**
@@ -902,24 +822,6 @@ class Cell extends Base {
         else
             this.cellEditedNot();
     }
-
-    // cellStanded(){
-    //     this.addClass('sta');
-    // }
-    // cellStandNot(){
-    //     this.removeClass('sta');
-    // }
-    // cellStandToggle(){
-    //     this._class = this._class || '';
-    //     if (this._class.indexOf('sta') === -1)
-    //         this.cellStanded();
-    //     else
-    //         this.cellStandNot();
-    // }
-
-
-
-
 }
 
 /**
@@ -928,7 +830,6 @@ class Cell extends Base {
 class ThFixed extends Cell {
     constructor() {
         super('th');
-        // this.inputNode.parentNode.removeChild(this.inputNode);
 
         this.addClass('fixed');
         this.bindThFixedClick();
@@ -955,9 +856,6 @@ class ThFixed extends Cell {
      * @param {TdStudent} tdStudent, A TdStudent Object
      */
     thFixedClick(event, tdStudent){
-        // alert('clicked');
-        // alert(this.parentNode);
-        // for (let i in g_table )
         let tb = this.parentNode.nodeBook;
         this.cellSelectedToggle();
         for(let i in tb.tbody)
@@ -1055,12 +953,6 @@ class ThEdit extends Cell {
         if(event.keyCode === 13)
             node.tdNewStudentBlur(event, node);
     }
-    // tdStudentClick(event, tdStudent){
-    //     // alert('student clicked');
-    //     tdStudent.parentNode.cellSelectedToggle();
-    //
-    // }
-
 }
 
 /**
@@ -1364,9 +1256,6 @@ class TdScore extends Cell {
      * @param score, json, score = {sum: 0, count:0}
      */
     injectScore(score){
-        // console.log(score);
-        // console.log(score.sum/score.count);
-        // console.log((score.sum/score.count)>g_data_conversion[3].per);
         for (let i=0; i<g_data_conversion.length; i++)
             if((score.sum/score.count)>g_data_conversion[i].per){
                 this.perNode.innerHTML = Number(score.sum/score.count).toFixed(0) + '%';
@@ -1423,12 +1312,10 @@ function addGradeClick(){
  * To delete all the Rows and Columns that is selected
  */
 function deleteSelectedItems(){
-    // for (let i=0
     let tb = g_table.nodeBook;
     /**
      * Delete Selected Rows
      */
-    // for(let i in tb.tbody)
     for (let i=0; i<tb.tbody.length; i++)
         if(tb.tbody[i].obj.classList.contains('sel')){
             g_table.deleteRow(tb.tbody[i]);
@@ -1445,5 +1332,7 @@ function deleteSelectedItems(){
         }
 }
 
-//page load
+/**
+ * page load
+ */
 pageLoad();
